@@ -2315,7 +2315,7 @@ subroutine parperp(vpar,vperp2,m,pi,cnt,MyId)
      t=sqrt(log(1.0/(r1*r1)))
   else
      t=5.0
-     write(*,*)'parperp2 warning  m= ',m
+     !write(*,*)'parperp2 warning  m= ',m
   endif
 
   vpar=t-(c0+c1*t+c2*t**2)/(1.+d1*t+d2*t**2+d3*t**3)

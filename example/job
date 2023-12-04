@@ -1,16 +1,16 @@
 #!/bin/bash -l
 
-#SBATCH -q regular
-#SBATCH -N 16
+##SBATCH -q debug
+#SBATCH -N 2
 ##SBATCH -n 8
 #SBATCH --ntasks-per-node=4
-#SBATCH -c 64
-#SBATCH -t 10:30:00
-#SBATCH -J kya
-#SBATCH -C cpu
-##SBATCH --gpus-per-task=1
-##SBATCH --gpu-bind=map_gpu:0,1,2,3
-#SBATCH -A gc3
+#SBATCH -c 32
+#SBATCH -t 00:30:00
+#SBATCH -J gpu_256
+#SBATCH -C gpu
+#SBATCH --gpus-per-task=1
+#SBATCH --gpu-bind=map_gpu:0,1,2,3
+#SBATCH -A mp118_g
 
 cd $SLURM_SUBMIT_DIR
 mkdir -p matrix

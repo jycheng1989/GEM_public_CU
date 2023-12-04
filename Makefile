@@ -3,7 +3,8 @@ SRCS =	gem_com.f90 gem_equil.f90 gem_main.f90 gem_outd.f90 gem_fcnt.f90 gem_fft_
 OBJS =	gem_com.o gem_equil.o gem_main.o gem_outd.o gem_fcnt.o gem_fft_wrapper.o gem_gkps_adi.o gem_beam.o
 
 #LIBS = ~/installed/dfftpack_cray/libdfftpack.a -lfftw3_threads -lfftw3  -lfftw3f_threads -lfftw3f
-LIBS = /global/homes/u/u10198/installed/dfftpack_cray/libdfftpack.a
+#LIBS = /global/homes/u/u10198/installed/dfftpack_cray/libdfftpack.a
+LIBS = dfftpack/libdfftpack.a 
 PLIB = gem_pputil.o
 
 
@@ -14,12 +15,12 @@ PLIB = gem_pputil.o
 OPENMP_OPT := -DOPENMP
 OPENACC_OPT := -DOPENACC
 
-#F90 = ftn $(OPENACC_OPT)#-DOLD_PMOVE #$(OPENACC_OPT)
-F90 = ftn $(OPENMP_OPT)#-DOLD_PMOVE #$(OPENMP_OPT)
+F90 = ftn $(OPENACC_OPT)#-DOLD_PMOVE #$(OPENACC_OPT)
+#F90 = ftn $(OPENMP_OPT)#-DOLD_PMOVE #$(OPENMP_OPT)
 
-OPT =  -f free -s real64  -h omp -hvector0 -h acc -hlist=a -e Z
-#OPT = -C -g -traceback -Mbounds -r8 -Kieee -llapack -cpp -mp # -lblas -Minfo=accel -mp # -acc
-#OPT = -O3 -r8 -Kieee -llapack -cpp -mp # -lblas -Minfo=accel -mp # -acc
+#OPT =  -f free -s real64  -h omp -hvector0 -h acc -hlist=a -e Z
+#OPT = -C -g -traceback -Mbounds -r8 -Kieee -llapack -cpp -mp -lblas -Minfo=accel -mp -acc
+OPT = -O3 -r8 -Kieee -llapack -cpp -mp -lblas -Minfo=accel -acc
 
 #OPT = -O0 -r8 -Kieee -llapack -lblas -cpp -Minfo=accel -mp
 #OPT = -O0 -r8 -Kieee -llapack -lblas -cpp -Minfo=accel -acc=multicore
